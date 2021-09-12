@@ -22,11 +22,11 @@ const showProducts = (products) => {
       <div>
     <img class="product-image" src=${image}></img>
       </div>
-      <h3>${product.title}</h3>
+      <h3 class="fw-bold">${product.title}</h3>
       <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price}), updateTotal()" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button onclick="showDetails(${product.id})" id="details-btn" class="btn btn-danger details-btn">Details</button></div>
+      <h2>Price: $ <span class="price fw-bold">${product.price}</span> </h2>
+      <button onclick="addToCart(${product.id},${product.price}), updateTotal()" id="addToCart-btn" class="buy-now btn btn-success border-0">Add to cart</button>
+      <button onclick="showDetails(${product.id})" id="details-btn" class="btn btn-danger details-btn border-0">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -50,11 +50,10 @@ const getInputValue = (id) => {
 
 // main price update function
 const updatePrice = (id, value) => {
-  console.log(id, value);
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = total;
+  document.getElementById(id).innerText = total.toFixed(2);
 };
 
 // set innerText function
@@ -85,7 +84,7 @@ const updateTotal = () => {
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
   // update grand total in the UI
-  document.getElementById("total").innerText = grandTotal;
+  document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 
 /* // show product details
