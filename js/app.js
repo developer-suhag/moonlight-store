@@ -1,9 +1,12 @@
 // load products
-const loadProducts = () => {
+const loadProducts = async () => {
   const url = `https://fakestoreapi.com/products`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => showProducts(data));
+  const res = await fetch(url);
+  const data = await res.json()
+  showProducts(data)
+  // fetch(url)
+  //   .then((response) => response.json())
+  //   .then((data) => showProducts(data));
 };
 // call the function
 loadProducts();
@@ -23,7 +26,7 @@ const showProducts = (products) => {
       <p>Category: ${product.category}</p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price}), updateTotal()" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="showDetails(${product.id})" id="details-btn" class="btn btn-danger details-btn">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -41,16 +44,17 @@ const addToCart = (id, price) => {
 
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
-  const converted = parseInt(element);
+  const converted = parseFloat(element);
   return converted;
 };
 
 // main price update function
 const updatePrice = (id, value) => {
+  console.log(id, value);
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = Math.round(total);
+  document.getElementById(id).innerText = total;
 };
 
 // set innerText function
@@ -83,3 +87,12 @@ const updateTotal = () => {
   // update grand total in the UI
   document.getElementById("total").innerText = grandTotal;
 };
+
+/* // show product details
+
+const showDetails = async id => {
+  const singleUrl = `https://fakestoreapi.com/products/${id}`;
+  const res = await fetch(singleUrl);
+  const data = await res.json()
+  console.log(data);
+} */

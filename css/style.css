@@ -1,7 +1,14 @@
+/* google Montserrat  font */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+/* common style  */
 body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
 }
+.section-title {
+  color: #6c5ce7;
+}
+/* search field style  */
 .search-field {
   border: none;
   border-radius: 50px;
@@ -12,19 +19,13 @@ body {
   outline: none;
   border: none;
 }
-.search-box {
-  border: 1px solid rgb(3, 118, 211);
-  width: 281px;
-  border-radius: 5px;
-  margin: auto;
-  margin-top: 50px;
-  border-right: none;
+
+/* search button style */
+#search-btn {
+  background: #2d3436;
+  color: #fff;
 }
-.search-button {
-  padding: 10px 50px;
-  border-radius: 25px;
-  margin-left: 20px;
-}
+/* all products style */
 #all-products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -35,6 +36,21 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+/* product button style*/
+.buy-now {
+  background: #a55eea;
+}
+.buy-now:hover {
+  background: #8854d0;
+}
+.details-btn {
+  background: #2bcbba;
+}
+.details-btn:hover {
+  background: #0fb9b1;
+}
+/* single product style */
 .single-product {
   padding: 10px;
   transition: 0.6s;
@@ -48,6 +64,8 @@ body {
   width: 150px;
   height: 150px;
 }
+
+/* cart style  */
 .cart {
   width: 350px;
   /* border: 1px solid green; */
@@ -60,6 +78,9 @@ body {
 .cart-main {
   padding-right: 30px;
 }
+
+/* responsive  */
+
 @media only screen and (max-width: 768px) {
   #all-products {
     display: grid;
