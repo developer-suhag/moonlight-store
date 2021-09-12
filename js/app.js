@@ -4,9 +4,6 @@ const loadProducts = async () => {
   const res = await fetch(url);
   const data = await res.json()
   showProducts(data)
-  // fetch(url)
-  //   .then((response) => response.json())
-  //   .then((data) => showProducts(data));
 };
 // call the function
 loadProducts();
@@ -15,7 +12,6 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    console.log(product.rating.rate);
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
@@ -33,8 +29,8 @@ const showProducts = (products) => {
           <p>Total rating: ${product.rating.count}</p>
         </div>
         <div class="card-footer bg-white border-0">
-          <button onclick="addToCart(${product.id},${product.price}), updateTotal()" id="addToCart-btn" class="buy-now btn btn-success border-0 px-4 py-2 me-2">Add to cart</button>
-          <button onclick="showDetails(${product.id})" id="details-btn" class="btn btn-danger details-btn border-0 px-4 py-2">Details</button>
+          <button onclick="addToCart(${product.id},${product.price}), updateTotal()" id="addToCart-btn" class="buy-now btn btn-secondary border-0 px-4 py-2 me-2">Add to cart</button>
+          <button onclick="showDetails(${product.id})" id="details-btn" class="btn btn-info details-btn border-0 px-4 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
         </div>
 
       
@@ -48,7 +44,6 @@ let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
   updatePrice("price", price);
-
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
 };
@@ -98,11 +93,31 @@ const updateTotal = () => {
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 
-/* // show product details
-
+// show product details
 const showDetails = async id => {
   const singleUrl = `https://fakestoreapi.com/products/${id}`;
   const res = await fetch(singleUrl);
   const data = await res.json()
-  console.log(data);
-} */
+  showDetailModal(data);
+};
+
+// get modal
+const productImg = document.getElementById('product-img');
+const productTitle = document.getElementById('title');
+const productDes = document.getElementById('description');
+const productCategory = document.getElementById('category');
+const averageRating = document.getElementById('avg-rating');
+const totalRating = document.getElementById('total-rating');
+const productPrice = document.getElementById('product-price');
+
+// show modal on click
+const showDetailModal = product => {
+  console.log(product);
+  productTitle.innerText = `${product.title}`;
+  productImg.src = `${product.image}`;
+  productDes.innerText = `${product.description}`;
+  productCategory.innerText = `Category: ${product.category}`;
+  averageRating.innerText = `Average Rating: ${product.rating.rate}`;
+  totalRating.innerText = `Total Rating: ${product.rating.count}`;
+  productPrice.innerText = `Price: $${product.price}`
+}
