@@ -61,11 +61,6 @@ body {
   height: 150px;
 }
 
-/* rating style */
-.five-star {
-  color: #ffeaa7;
-}
-
 /* cart style  */
 .cart {
   width: 350px;
@@ -83,18 +78,28 @@ body {
 #description:first-letter {
   text-transform: uppercase;
 }
-#category {
+#category,
+.categroy {
   color: #00b894;
 }
-#avg-rating {
-  color: #f8c291;
+#avg-rating,
+.average-rating {
+  color: #fa8231;
   font-size: 20px;
   margin-bottom: 10px;
 }
-#total-rating {
+#total-rating,
+.total-rating {
   color: #0a3d62;
   font-size: 20px;
   margin-bottom: 30px;
+}
+
+/* footer style */
+.footer {
+  display: none;
+  background: #222f3e;
+  color: #f7f7f7;
 }
 
 /* responsive  */

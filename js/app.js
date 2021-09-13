@@ -1,3 +1,6 @@
+// footer element to show footer after produc load
+const footer = document.getElementById('footer')
+
 // load products
 const loadProducts = async () => {
   const url = `https://fakestoreapi.com/products`;
@@ -8,34 +11,11 @@ const loadProducts = async () => {
 // call the function
 loadProducts();
 
-const rating = rate => {
-  console.log(rate);
-  const averageRating = document.getElementById('average-rating');
-  if (rate > 4.7) {
-    averageRating.innerHTML = `
-    <i class="fas fa-star five-star"></i>
-    <i class="fas fa-star five-star"></i>
-    <i class="fas fa-star five-star"></i>
-    <i class="fas fa-star five-star"></i>
-    <i class="fas fa-star five-star"></i>
-    `;
-  } else if (rate > 4) {
-
-  } else if (rate > 3) {
-
-  } else if (rate > 2) {
-
-  } else if (rate > 1) {
-
-  }
-}
-
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const image = product.image;
-    const productRating = rating(product.rating.rate)
     const div = document.createElement("div");
     div.classList.add("product");
     div.classList.add("col");
@@ -46,10 +26,10 @@ const showProducts = (products) => {
         </div>
         <div class="card-body">
           <h3 class="fw-normal fs-4">${product.title}</h3>
-          <p>Category: ${product.category}</p>
+          <p class="categroy">Category: ${product.category}</p>
           <h2 class="fs-3 mb-3">Price: $ <span class="price fw-bold fs-3">${product.price}</span> </h2>
-          <p id="average-rating">Average rating: ${product.rating.rate}</p>
-          <p>Total rating: ${product.rating.count}</p>
+          <p class="average-rating">Average rating: ${product.rating.rate}</p>
+          <p class="total-rating">Total rating: ${product.rating.count}</p>
         </div>
         <div class="card-footer bg-white border-0">
           <button onclick="addToCart(${product.id},${product.price}), updateTotal()" id="addToCart-btn" class="buy-now btn btn-secondary border-0 px-4 py-2 me-2">Add to cart</button>
@@ -59,6 +39,8 @@ const showProducts = (products) => {
       
     </div>`;
     document.getElementById("all-products").appendChild(div);
+    // show footer
+    footer.style.display = 'block';
   }
 };
 
