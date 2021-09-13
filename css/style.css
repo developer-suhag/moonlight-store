@@ -61,6 +61,11 @@ body {
   height: 150px;
 }
 
+/* rating style */
+.five-star {
+  color: #ffeaa7;
+}
+
 /* cart style  */
 .cart {
   width: 350px;

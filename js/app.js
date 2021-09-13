@@ -8,11 +8,34 @@ const loadProducts = async () => {
 // call the function
 loadProducts();
 
+const rating = rate => {
+  console.log(rate);
+  const averageRating = document.getElementById('average-rating');
+  if (rate > 4.7) {
+    averageRating.innerHTML = `
+    <i class="fas fa-star five-star"></i>
+    <i class="fas fa-star five-star"></i>
+    <i class="fas fa-star five-star"></i>
+    <i class="fas fa-star five-star"></i>
+    <i class="fas fa-star five-star"></i>
+    `;
+  } else if (rate > 4) {
+
+  } else if (rate > 3) {
+
+  } else if (rate > 2) {
+
+  } else if (rate > 1) {
+
+  }
+}
+
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const image = product.image;
+    const productRating = rating(product.rating.rate)
     const div = document.createElement("div");
     div.classList.add("product");
     div.classList.add("col");
@@ -25,7 +48,7 @@ const showProducts = (products) => {
           <h3 class="fw-normal fs-4">${product.title}</h3>
           <p>Category: ${product.category}</p>
           <h2 class="fs-3 mb-3">Price: $ <span class="price fw-bold fs-3">${product.price}</span> </h2>
-          <p>Average rating: ${product.rating.rate}</p>
+          <p id="average-rating">Average rating: ${product.rating.rate}</p>
           <p>Total rating: ${product.rating.count}</p>
         </div>
         <div class="card-footer bg-white border-0">
@@ -112,7 +135,6 @@ const productPrice = document.getElementById('product-price');
 
 // show modal on click
 const showDetailModal = product => {
-  console.log(product);
   productTitle.innerText = `${product.title}`;
   productImg.src = `${product.image}`;
   productDes.innerText = `${product.description}`;
