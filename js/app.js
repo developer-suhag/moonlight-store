@@ -42,8 +42,6 @@ const showProducts = (products) => {
           <button onclick="addToCart(${product.id},${product.price}), updateTotal()" id="addToCart-btn" class="buy-now btn btn-secondary border-0 px-4 py-2 me-2">Add to cart</button>
           <button onclick="showDetails(${product.id})" id="details-btn" class="btn btn-info details-btn border-0 px-4 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
         </div>
-
-      
     </div>`;
     document.getElementById("all-products").appendChild(div);
     // show footer
@@ -59,7 +57,7 @@ const addToCart = (id, price) => {
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
 };
-
+// get value
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
