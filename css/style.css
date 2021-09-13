@@ -8,6 +8,10 @@ body {
 .section-title {
   color: #6c5ce7;
 }
+/* spinner  */
+#spinner {
+  display: none;
+}
 /* search field style  */
 .search-field {
   border: none;

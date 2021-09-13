@@ -1,12 +1,19 @@
 // footer element to show footer after produc load
 const footer = document.getElementById('footer')
+// spinner element 
+const spinner = document.getElementById('spinner');
+
 
 // load products
 const loadProducts = async () => {
+  // show spinner
+  spinner.style.display = 'block';
   const url = `https://fakestoreapi.com/products`;
   const res = await fetch(url);
   const data = await res.json()
   showProducts(data)
+  // remove spinner
+  spinner.style.display = 'none';
 };
 // call the function
 loadProducts();
